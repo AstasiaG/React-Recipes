@@ -1,4 +1,36 @@
 // font
+@font-face {
+  font-family: "Inter";
+  src: url("@/assets/fonts/Inter-Light.eot");
+  src: local("Inter-Light"), local("Inter-Light"), 
+  url("@/assets/fonts/Inter-Light.eot?#iefix") format("embedded-opentype"), 
+  url("@/assets/fonts/Inter-Light.woff2") format("woff2"), 
+  url("@/assets/fonts/Inter-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("@/assets/fonts/Inter-Regular.eot");
+  src: local("Inter-Regular"), local("Inter-Regular"), 
+  url("@/assets/fonts/Inter-Regular.eot?#iefix") format("embedded-opentype"), 
+  url("@/assets/fonts/Inter-Regular.woff2") format("woff2"), 
+  url("@/assets/fonts/Inter-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("@/assets/fonts/Inter-SemiBold.eot");
+  src: local("Inter-SemiBold"), local("Inter-SemiBold"), 
+  url("@/assets/fonts/Inter-SemiBold.eot?#iefix") format("embedded-opentype"), 
+  url("@/assets/fonts/Inter-SemiBold.woff2") format("woff2"), 
+  url("@/assets/fonts/Inter-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
 
 // colors
 $black: #230800;
@@ -20,6 +52,7 @@ html {
 }
 
 body {
+  font-family: 'Inter', sans-serif;
   color: $black;
 }
 

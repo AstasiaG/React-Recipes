@@ -11,5 +11,5 @@ export interface IRecipe {
   tags: string[]
   image: string
   rating: number
-  mealType: string
+  mealType: string[]
 }

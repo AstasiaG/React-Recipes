@@ -1,34 +1,14 @@
-import { IRecipe } from '@/types/types';
-import axios from 'axios';
-import { FC, ReactNode, useEffect, useState } from 'react';
-import { RecipeCard } from './RecipeCard/RecipeCard';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Main } from '@/pages/Main';
+import { RecipePage } from '@/pages/RecipePage';
 
-export const App:FC = () => {
-  const [recipes, setRecipes] = useState<IRecipe[]>([])
-
-useEffect(() => {
-  fetchRecipes()
-}, [])
-
-async function fetchRecipes() {
-  try {
-    const response = await axios.get<{recipes: IRecipe[]}>('https://dummyjson.com/recipes')
-    setRecipes(response.data.recipes)
-  } catch (error) {
-    alert(error)
-  }
-}
-
+export const App = () => {
   return (
-    <div>
-      Hello
-      {
-        recipes.map((recipe: IRecipe): ReactNode => {
-        return (
-          <RecipeCard recipe={recipe} />
-        )
-        })
-      }
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/recipes/:id' element={<RecipePage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
