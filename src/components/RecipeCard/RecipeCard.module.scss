@@ -1,0 +1,51 @@
+@use '@/styles/global.scss';
+
+.card {
+  width: 29.6rem;
+
+  .image {
+    width: 100%;
+    height: 23rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .d {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    color: global.$dark-grey;
+    font-size: 1.4rem;
+
+    .type {
+      font-weight: 500;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+  }
+
+  .title {
+    width: 100%;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .tags {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    & li {
+      width: fit-content;
+      padding: 0.3rem 1.3rem;
+      color: global.$dark-grey;
+      background-color: global.$light-gray;
+      border-radius: 4rem;
+    }
+  }
+}

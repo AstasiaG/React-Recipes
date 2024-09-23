@@ -1,6 +1,7 @@
 import { IRecipe } from '@/types/types';
 import axios from 'axios';
 import { FC, ReactNode, useEffect, useState } from 'react';
+import { RecipeCard } from './RecipeCard/RecipeCard';
 
 export const App:FC = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([])
@@ -24,10 +25,7 @@ async function fetchRecipes() {
       {
         recipes.map((recipe: IRecipe): ReactNode => {
         return (
-          <div style={{ width: '300px' }}>
-            <img style={{ width: '100%' }} src={recipe.image} alt={`${recipe.name} image`} />
-            <h4>{recipe.name}</h4>
-          </div>
+          <RecipeCard recipe={recipe} />
         )
         })
       }
