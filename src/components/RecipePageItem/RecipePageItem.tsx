@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import * as classes from './RecipePageItem.module.scss'
 import { IRecipe } from '@/types/types'
 import Star from '@/assets/star.svg'
+import { RecipeHeader } from '../RecipeHeader'
 
 interface RecipePageItemProps {
   item: IRecipe
@@ -15,22 +16,7 @@ export const RecipePageItem: FC<RecipePageItemProps> = ({ item }) => {
           <img src={ item.image} alt='' />
         </div>
         <div className={classes.info}>
-          <div className={classes.header}>
-            <div className={classes.d}>
-              <span>{item.mealType.join(' ')}</span>
-              <div>
-                <Star />
-                {item.rating}
-              </div>
-            </div>
-            <h2 className={classes.title}>{item.name}</h2>
-            <ul className={classes.tags}>
-              {item.tags.map((tag: string): ReactNode => {
-                return <li>{tag}</li>
-                })
-              }
-            </ul>
-          </div>
+          <RecipeHeader recipe={item} classes={classes} />
 
           <div className={classes.ingredients}>
             <h3 className={classes.title}>Ingredients</h3>
