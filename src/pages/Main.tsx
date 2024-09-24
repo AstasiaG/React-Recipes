@@ -12,15 +12,16 @@ export const Main = () => {
   const [limit, setLimit] = useState<number>(8)
   const [total, setTotal] = useState<number>(0)
   const [filter, setFilter] = useState<string>('')
+  const [url, setUrl] = useState<string>('https://dummyjson.com/recipes');
   const router = useNavigate();
 
   useEffect(() => {
-    fetchRecipes()
-  }, [page, limit])
+    fetchRecipes(url)
+  }, [page, limit, url])
 
-  async function fetchRecipes() {
+  async function fetchRecipes(url: string) {
     try {
-      const response = await axios.get<{ recipes: IRecipe[], total: number }>('https://dummyjson.com/recipes', {
+      const response = await axios.get<{ recipes: IRecipe[], total: number }>(url, {
         params: {
           limit: limit,
           skip: limit * (page - 1),
@@ -33,24 +34,12 @@ export const Main = () => {
     }
   }
 
-
-  async function fetchSearchRecipes() {
-    try {
-      const response = await axios.get<{ recipes: IRecipe[], total: number }>('https://dummyjson.com/recipes/search?q=' + filter, {
-        params: {
-          limit: limit,
-          skip: limit * (page - 1),
-        }
-      })
-      setTotal(response.data.total)
-      setRecipes(response.data.recipes)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const SearchRecipe = useMemo(() => {
-    fetchSearchRecipes()
+    filter ?
+      setUrl('https://dummyjson.com/recipes/search?q=' + filter)
+      :
+      setUrl('https://dummyjson.com/recipes')
   },[filter])
 
   return (
