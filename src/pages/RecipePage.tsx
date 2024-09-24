@@ -1,8 +1,9 @@
-import { RecipeCard } from '@/components/RecipeCard/RecipeCard'
 import { IRecipe } from '@/types/types'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Star from '@/assets/star.svg'
+import { RecipePageItem } from '@/components/RecipePageItem/RecipePageItem'
 
 export const RecipePage = () => {
   const params = useParams()
@@ -25,9 +26,9 @@ export const RecipePage = () => {
   }
 
   return (
-    <div>
-      {isLoading ? <h2>Loading...</h2> : 
-        <div></div>
+    <div className='container'>
+      {isLoading ? <h2>Loading...</h2> :
+        <RecipePageItem item={ recipe } />
       }
     </div>
   )

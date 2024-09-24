@@ -27,7 +27,8 @@ export default (env: EnvVariables) => {
     plugins: [
       new HtmlWebpackPlugin(
         {
-          template: path.resolve(__dirname, 'public', 'index.html')
+          template: path.resolve(__dirname, 'public', 'index.html'),
+          filename: 'index.html'
         }
       ),
       new MiniCssExtractPlugin(
@@ -97,6 +98,7 @@ export default (env: EnvVariables) => {
       port: env.port ?? 3000,
       open: true,
       historyApiFallback: true,
+      watchFiles: path.join(__dirname, "src"),
     } : undefined
   }
 

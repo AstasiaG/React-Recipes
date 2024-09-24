@@ -1,0 +1,168 @@
+@use '@/styles/global.scss';
+
+.recipe {
+  width: 100%;
+  margin: 2.5rem auto 10rem;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .image {
+    width: 61.6rem;
+    height: 52.5rem;
+  }
+
+  .info {
+    width: 61.2rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .header {
+      .d {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+        color: global.$dark-grey;
+        font-size: 1.6rem;
+    
+        .type {
+          font-weight: 300;
+        }
+    
+        .rating {
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+        }
+      }
+    
+
+      .title {
+        font-size: 3.6rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .tags {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    
+        & li {
+          width: fit-content;
+          padding: 0.3rem 1.3rem;
+          color: global.$dark-grey;
+          background-color: global.$backdrop;
+          border: 0.1rem solid global.$orange;
+          border-radius: 4rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .ingredients {
+      .title {
+        position: relative;
+        font-size: 2.4rem;
+        font-weight: 600;
+        margin-bottom: 4rem;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          display: inline-block;
+          width: -webkit-fill-available;
+          margin-left: 0.8rem;
+          height: 0.1rem;
+          background-color: global.$orange;
+        }
+      }
+
+      .list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 27.5rem;
+
+        & li {
+          width: 50%;
+          font-size: 1.4rem;
+
+          &:not(:last-child) {
+            margin-bottom: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+
+    .directions {
+      width: 61.6rem;
+
+      .title {
+        font-size: 2.4rem;
+        font-weight: 600;
+        margin-bottom: 4rem;
+      }
+
+      .list {
+        & li {
+          & span {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-size: 2rem;
+            color: global.$dark-grey;
+          }
+
+          & p {
+            font-size: 1.6rem;
+          }
+
+          &:not(:last-child) {
+            margin-bottom: 3rem;
+          }
+        }
+      }
+    }
+
+    .times {
+      width: 61.2rem;
+      height: fit-content;
+      display: flex;
+      gap: 2.5rem;
+      padding: 3rem 2rem;
+      border-radius: 4rem;
+      background-color: global.$backdrop;
+
+      .item {
+        width: 12rem;
+        text-align: center;
+        font-size: 2rem;
+
+        & span {
+          display: block;
+
+          &:first-child {
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: global.$dark-grey;
+          }
+        }
+      }
+    }
+  }
+}
