@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import * as classes from './RecipePageItem.module.scss'
 import { IRecipe } from '@/types/types'
-import Star from '@/assets/star.svg'
 import { RecipeHeader } from '../RecipeHeader'
 
 interface RecipePageItemProps {

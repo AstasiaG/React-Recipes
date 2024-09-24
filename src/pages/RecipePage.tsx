@@ -2,7 +2,6 @@ import { IRecipe } from '@/types/types'
 import axios from 'axios'
 import React, { ReactNode, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Star from '@/assets/star.svg'
 import { RecipePageItem } from '@/components/RecipePageItem/RecipePageItem'
 
 export const RecipePage = () => {

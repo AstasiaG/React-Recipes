@@ -1,0 +1,35 @@
+@use '@/styles/global.scss';
+
+.navbar {
+  max-width: 125rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 0 2.5rem;
+
+
+    .link {
+      padding: 0.6rem 1.4rem;
+      font-size: 1.4rem;
+
+      &:hover {
+        color: global.$orange;
+      }
+
+      &.active {
+        color: global.$orange;
+        font-weight: 600;
+      }
+    }
+
+    input {
+      width: 72rem;
+      padding: 0.6rem 3.6rem;
+      border: 0.1rem solid global.$light-gray;
+      border-radius: 4rem;
+      font-size: 1.4rem;
+
+      &::placeholder {
+        color: global.$dark-grey;
+      }
+    }
+}

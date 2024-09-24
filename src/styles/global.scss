@@ -90,6 +90,19 @@ img {
   border-radius: 4rem;
 }
 
+input {
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+
+  &:focus {
+    outline: none;
+  }
+  &:active {
+      outline: none;
+  }
+}
+
 :global(.container) {
   max-width: 125rem;
   width: 100%;

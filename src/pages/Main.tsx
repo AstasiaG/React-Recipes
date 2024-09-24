@@ -1,8 +1,9 @@
 import { RecipeCard } from '@/components/RecipeCard/RecipeCard'
+import { Navbar } from '@/components/UI/Navbar/Navbar'
 import { Pagination } from '@/components/UI/Pagination/Pagination'
 import { IRecipe } from '@/types/types'
 import axios from 'axios'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const Main = () => {
@@ -10,6 +11,7 @@ export const Main = () => {
   const [page, setPage] = useState<number>(1)
   const [limit, setLimit] = useState<number>(8)
   const [total, setTotal] = useState<number>(0)
+  const [filter, setFilter] = useState<string>('')
   const router = useNavigate();
 
   useEffect(() => {
@@ -31,8 +33,29 @@ export const Main = () => {
     }
   }
 
+
+  async function fetchSearchRecipes() {
+    try {
+      const response = await axios.get<{ recipes: IRecipe[], total: number }>('https://dummyjson.com/recipes/search?q=' + filter, {
+        params: {
+          limit: limit,
+          skip: limit * (page - 1),
+        }
+      })
+      setTotal(response.data.total)
+      setRecipes(response.data.recipes)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const SearchRecipe = useMemo(() => {
+    fetchSearchRecipes()
+  },[filter])
+
   return (
     <div className='container'>
+      <Navbar setFilter={setFilter} />
       <div  style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', margin: '4rem 0' }}>
         {
           recipes.map((recipe: IRecipe): ReactNode => {
