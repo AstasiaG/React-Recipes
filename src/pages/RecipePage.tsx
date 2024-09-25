@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { ReactNode, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { RecipePageItem } from '@/components/RecipePageItem/RecipePageItem'
+import { Comments } from '@/components/Comments/Comments'
 
 export const RecipePage = () => {
   const params = useParams()
@@ -29,6 +30,7 @@ export const RecipePage = () => {
       {isLoading ? <h2>Loading...</h2> :
         <RecipePageItem item={ recipe } />
       }
+      <Comments />
     </div>
   )
 }

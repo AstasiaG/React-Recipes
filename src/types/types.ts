@@ -13,3 +13,11 @@ export interface IRecipe {
   rating: number
   mealType: string[]
 }
+
+export interface IComment {
+  id: number
+  body: string
+  user: {
+    username: string
+  }
+}

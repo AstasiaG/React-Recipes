@@ -32,19 +32,6 @@ export const Main = () => {
     }
   }
 
-  // const SearchRecipe = useMemo(() => {
-  //   if (isSearch) {
-  //     setUrl('https://dummyjson.com/recipes/search?q=' + query)
-  //   } else if (isTag) {
-  //     setUrl('https://dummyjson.com/recipes/tag/' + query)
-  //   } else if (isMeal) {
-  //     setUrl('https://dummyjson.com/recipes/meal-type/' + query)
-  //   } else {
-  //     setUrl('https://dummyjson.com/recipes')
-  //   }
-
-  // },[ isMeal, isSearch, isTag])
-
   return (
     <div className='container'>
       <RecipesList total={total} limit={limit} page={page} setPage={setPage} />

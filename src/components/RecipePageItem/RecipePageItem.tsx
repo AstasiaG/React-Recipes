@@ -20,9 +20,9 @@ export const RecipePageItem: FC<RecipePageItemProps> = ({ item }) => {
           <div className={classes.ingredients}>
             <h3 className={classes.title}>Ingredients</h3>
             <ul className={classes.list}>
-              {item.ingredients.map((ingredient: string): ReactNode => {
-                return <li >{ingredient}</li>
-                })
+              {item.ingredients.map((ingredient: string,id: number) => 
+                 <li key={id}>{ingredient}</li>
+                )
               }
             </ul>
           </div>
