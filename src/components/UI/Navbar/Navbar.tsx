@@ -1,12 +1,11 @@
-import React, { ChangeEvent, FC } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { ChangeEvent, useContext } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import * as classes from './Navbar.module.scss'
+import { SearchContext } from '@/context'
 
-interface NavbarProps {
-  setFilter: (filter: string) => void
-}
-
-export const Navbar:FC<NavbarProps> = ({setFilter}) => {
+export const Navbar = () => {
+  const { setQuery, setIsSearch } = useContext(SearchContext);
+  const router = useNavigate()
   return (
     <div className={classes.navbar}>
       <NavLink
@@ -20,8 +19,14 @@ export const Navbar:FC<NavbarProps> = ({setFilter}) => {
       <input
         type='text'
         placeholder='Find a recipe...'
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setFilter(e.target.value)} 
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          setQuery(e.target.value)
+          e.target.value ? (
+            setIsSearch(true),
+            router('/')
+          ) :
+          setIsSearch(false)
+        }}
           />
     </div>
   )
