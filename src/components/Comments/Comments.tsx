@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { IComment } from '@/types/types'
 import axios from 'axios'
 import * as classes from './Comments.module.scss'
+import { CommentItem } from '../CommentItem/CommentItem'
 
 export const Comments = () => {
   const params = useParams()
@@ -27,10 +28,7 @@ export const Comments = () => {
       <div >
         {comments.length > 0 ?
           comments.map((comment: IComment) =>
-          <div className={ classes.item}>
-            <p className={ classes.name}> {comment.user.username}</p>
-            <p className={ classes.text}>{ comment.body }</p>
-          </div>
+            <CommentItem comment={comment} />
           )
           :
           <p className={ classes.subtitle }>While nobody left any comments</p>
