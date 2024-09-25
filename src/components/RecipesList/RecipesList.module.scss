@@ -1,0 +1,12 @@
+@use '@/styles/global.scss';
+
+.wrapper {
+  margin-bottom: 5rem;
+  
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 4rem 0;
+  }
+}
