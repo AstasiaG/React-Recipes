@@ -4,8 +4,10 @@ import { RecipePage } from '@/pages/RecipePage';
 import { Navbar } from './UI/Navbar/Navbar';
 import { useState } from 'react';
 import { SearchContext } from '@/context';
+import { IRecipe } from '@/types/types';
 
 export const App = () => {
+  const [recipes, setRecipes] = useState<IRecipe[]>([])
   const [query, setQuery] = useState<string>('');
   const [isTag, setIsTag] = useState<boolean>(false)
   const [isSearch, setIsSearch] = useState<boolean>(false)
@@ -14,6 +16,8 @@ export const App = () => {
   return (
     <SearchContext.Provider
       value={{
+        recipes,
+        setRecipes,
         query,
         setQuery,
         isTag,
