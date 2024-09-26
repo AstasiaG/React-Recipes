@@ -23,7 +23,7 @@ export const RecipeHeader: FC<RecipeHeaderProps> = ({ recipe, classes }) => {
               onClick={() => {
                 setIsMeal(true)
                 setQuery(type)
-                router('/')
+                router('/' + type)
               }}
             >
               {type}
@@ -35,7 +35,7 @@ export const RecipeHeader: FC<RecipeHeaderProps> = ({ recipe, classes }) => {
             {recipe.rating}
           </div>
         </div>
-        <h4 className={classes.title}>{recipe.name}</h4>
+        <h2 className={classes.title}>{recipe.name}</h2>
         <ul className={classes.tags}>
           {recipe.tags.map((tag: string, index: number) => 
             <li
@@ -43,7 +43,7 @@ export const RecipeHeader: FC<RecipeHeaderProps> = ({ recipe, classes }) => {
               onClick={() => {
                 setIsTag(true)
                 setQuery(tag)
-                router('/')
+                router('/'  + tag)
                 }
               }
             >

@@ -5,6 +5,7 @@ import { Navbar } from './UI/Navbar/Navbar';
 import { useState } from 'react';
 import { SearchContext } from '@/context';
 import { IRecipe } from '@/types/types';
+import { SearchResult } from '@/pages/SearchResult';
 
 export const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([])
@@ -32,6 +33,7 @@ export const App = () => {
         <Navbar />
         <Routes>
           <Route path='/' element={<Main />} />
+          <Route path='/:query' element={ <SearchResult />} />
           <Route path='/recipes/:id' element={<RecipePage />} />
         </Routes>
       </BrowserRouter>

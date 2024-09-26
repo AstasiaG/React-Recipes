@@ -3,14 +3,15 @@ import { SearchContext } from '@/context'
 import { useSearch } from '@/hooks/useSearch'
 import { IRecipe } from '@/types/types'
 import axios from 'axios'
-import React, { FC, ReactNode, useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-export const Main = () => {
+export const SearchResult = () => {
   const [page, setPage] = useState<number>(1)
   const [limit, setLimit] = useState<number>(8)
   const [total, setTotal] = useState<number>(0)
-  const { isSearch, setRecipes, query} = useContext(SearchContext)
-  const url = useSearch(query, isSearch);
+  const {isSearch, isTag, isMeal, setRecipes, query } = useContext(SearchContext)
+  const url = useSearch(query, isSearch, isMeal, isTag);
 
   useEffect(() => {
     fetchRecipes(url)
@@ -33,6 +34,7 @@ export const Main = () => {
 
   return (
     <div className='container'>
+      <h2>{ query }</h2>
       <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
     </div>
   )

@@ -1,9 +1,13 @@
 import { useMemo } from "react";
 
-export const useSearch = (isMeal: boolean, isSearch: boolean, isTag: boolean, query: string) => {
+export const useSearch = (query: string, isSearch?: boolean, isMeal?: boolean, isTag?: boolean) => {
   let url: string = ''
 
   const SearchRecipe = useMemo(() => {
+    console.log(query)
+    console.log(isMeal)
+    console.log(isSearch)
+    console.log(isTag)
 
     if (isSearch) {
       url = 'https://dummyjson.com/recipes/search?q=' + query;

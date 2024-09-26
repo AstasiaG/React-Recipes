@@ -1,10 +1,11 @@
-import React, { ChangeEvent, useContext } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import * as classes from './Navbar.module.scss'
 import { SearchContext } from '@/context'
 
 export const Navbar = () => {
-  const { setQuery, setIsSearch } = useContext(SearchContext);
+  const { setQuery, setIsSearch, query } = useContext(SearchContext);
+  const [value, setValue] = useState<string>('')
   const router = useNavigate()
   return (
     <div className={classes.navbar}>
@@ -13,6 +14,10 @@ export const Navbar = () => {
         className={({ isActive }) =>
           isActive ? `${classes.link} ${classes.active}` : classes.link
         }
+        onClick={() => {
+          setQuery('')
+          setValue('')
+        }}
       >
         All Recipes
       </NavLink>
@@ -21,11 +26,19 @@ export const Navbar = () => {
         placeholder='Find a recipe...'
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           setQuery(e.target.value)
-          e.target.value ? (
-            setIsSearch(true),
-            router('/')
-          ) :
-          setIsSearch(false)
+          setValue(e.target.value)
+          !e.target.value &&
+              router('/')
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            value ? 
+              setIsSearch(true)
+              :
+              setIsSearch(false)
+
+            router('/' + value)
+          }
         }}
           />
     </div>

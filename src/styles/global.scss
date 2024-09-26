@@ -103,6 +103,12 @@ input {
   }
 }
 
+h2 {
+  font-size: 3.6rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
 :global(.container) {
   max-width: 125rem;
   width: 100%;
