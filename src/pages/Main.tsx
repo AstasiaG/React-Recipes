@@ -1,5 +1,6 @@
 import Service from '@/API/Service'
 import { RecipesList } from '@/components/RecipesList/RecipesList'
+import { TagsCloud } from '@/components/TagsCloud/TagsCloud'
 import { SearchContext } from '@/context'
 import { useFetching } from '@/hooks/useFetch'
 import { useSearch } from '@/hooks/useSearch'
@@ -7,7 +8,7 @@ import React, { FC, ReactNode, useContext, useEffect, useMemo, useState } from '
 
 export const Main = () => {
   const [page, setPage] = useState<number>(1)
-  const [limit, setLimit] = useState<number>(8)
+  const [limit, setLimit] = useState<number>(12)
   const [total, setTotal] = useState<number>(0)
   const { isSearch, setRecipes, query} = useContext(SearchContext)
   const url = useSearch(query, isSearch);
@@ -27,7 +28,10 @@ export const Main = () => {
 
   return (
     <div className='container'>
-      <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
+      <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: '3.08fr 1fr'}}>
+        <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
+        <TagsCloud />
+      </div>
     </div>
   )
 }

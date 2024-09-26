@@ -23,4 +23,11 @@ export default class Service {
     return response;
   }
 
+  static async getTags() {
+
+    const response = await axios.get<string[]>('https://dummyjson.com/recipes/tags');
+    
+    return response;
+  }
+
 }
