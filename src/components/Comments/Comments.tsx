@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { IComment } from '@/types/types'
-import axios from 'axios'
 import * as classes from './Comments.module.scss'
 import { CommentItem } from '../CommentItem/CommentItem'
+import { useFetching } from '@/hooks/useFetch'
+import Service from '@/API/Service'
 
 export const Comments = () => {
-  const params = useParams()
+  const {id} = useParams()
   const [comments, setComments] = useState<IComment[]>([])
+  const [fetchComments, error] = useFetching(async ({id}) => {
+
+    const response = await Service.getComments(id)
+
+    setComments(response.data.comments)
+  })
 
   useEffect(() => {
-    fetchComments()
-  }, [params])
+    fetchComments({id})
 
-  async function fetchComments() {
-    try {
-      const response = await axios.get<{comments: IComment[]}>('https://dummyjson.com/comments/post/' + params.id)
-      setComments(response.data.comments)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  }, [])
+
 
   return (
     <div className={ classes.wrapper}>

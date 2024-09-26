@@ -1,10 +1,9 @@
+import Service from '@/API/Service'
 import { RecipesList } from '@/components/RecipesList/RecipesList'
 import { SearchContext } from '@/context'
+import { useFetching } from '@/hooks/useFetch'
 import { useSearch } from '@/hooks/useSearch'
-import { IRecipe } from '@/types/types'
-import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 
 export const SearchResult = () => {
   const [page, setPage] = useState<number>(1)
@@ -13,24 +12,18 @@ export const SearchResult = () => {
   const {isSearch, isTag, isMeal, setRecipes, query } = useContext(SearchContext)
   const url = useSearch(query, isSearch, isMeal, isTag);
 
-  useEffect(() => {
-    fetchRecipes(url)
-  }, [page, limit, url])
+  const [fetchRecipes, error] = useFetching(async ({limit, page, url}) => {
+    
+    const response = await Service.getRecipes(limit, page, url)
 
-  async function fetchRecipes(url: string) {
-    try {
-      const response = await axios.get<{ recipes: IRecipe[], total: number }>(url, {
-        params: {
-          limit: limit,
-          skip: limit * (page - 1),
-        }
-      })
-      setTotal(response.data.total)
-      setRecipes(response.data.recipes)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+    setTotal(response.data.total)
+    setRecipes(response.data.recipes)
+  })
+
+  useEffect(() => {
+    fetchRecipes({limit, page, url})
+
+  }, [page, limit, url])
 
   return (
     <div className='container'>

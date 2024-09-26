@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import * as classes from './Navbar.module.scss'
 import { SearchContext } from '@/context'
 
 export const Navbar = () => {
-  const { setQuery, setIsSearch, query } = useContext(SearchContext);
+  const { setQuery, setIsSearch} = useContext(SearchContext);
   const [value, setValue] = useState<string>('')
   const router = useNavigate()
   return (
@@ -30,7 +30,7 @@ export const Navbar = () => {
           !e.target.value &&
               router('/')
         }}
-        onKeyDown={(event) => {
+        onKeyDown={(event: KeyboardEvent) => {
           if (event.key === 'Enter') {
             value ? 
               setIsSearch(true)

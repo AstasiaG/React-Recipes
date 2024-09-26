@@ -4,10 +4,6 @@ export const useSearch = (query: string, isSearch?: boolean, isMeal?: boolean, i
   let url: string = ''
 
   const SearchRecipe = useMemo(() => {
-    console.log(query)
-    console.log(isMeal)
-    console.log(isSearch)
-    console.log(isTag)
 
     if (isSearch) {
       url = 'https://dummyjson.com/recipes/search?q=' + query;
