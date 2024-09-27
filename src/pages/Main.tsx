@@ -1,6 +1,7 @@
 import Service from '@/API/Service'
 import { RecipesList } from '@/components/RecipesList/RecipesList'
 import { TagsCloud } from '@/components/TagsCloud/TagsCloud'
+import { SortPanel } from '@/components/UI/SortPanel/SortPanel'
 import { SearchContext } from '@/context'
 import { useFetching } from '@/hooks/useFetch'
 import { useSearch } from '@/hooks/useSearch'
@@ -32,17 +33,10 @@ export const Main = () => {
 
   return (
     <div className='container'>
-      <div>
-        <span>Sort by:</span>
-        <ul>
-          <li onClick={() => setFilter('name')}>Name</li>
-          <li onClick={() => setFilter('rating')}>Rating</li>
-          <li onClick={() => setFilter('difficulty')}>Difficulty</li>
-        </ul>
-      </div>
-    <div className='grid_container'>
-      <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
-      <TagsCloud />
+      <SortPanel setFilter={ setFilter} />
+      <div className='grid_container'>
+        <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
+        <TagsCloud />
       </div>
     </div>
   )
