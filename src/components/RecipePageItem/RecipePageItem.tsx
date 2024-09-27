@@ -2,12 +2,14 @@ import React, { FC, ReactNode } from 'react'
 import * as classes from './RecipePageItem.module.scss'
 import { IRecipe } from '@/types/types'
 import { RecipeHeader } from '../RecipeHeader'
+import { totalTime } from '@/utils/TotalTime'
 
 interface RecipePageItemProps {
   item: IRecipe
 }
 
 export const RecipePageItem: FC<RecipePageItemProps> = ({ item }) => {
+  const fullTime = totalTime(item.prepTimeMinutes, item.cookTimeMinutes)
   return (
     <div className={classes.recipe}>
       <div className={classes.top}>
@@ -43,6 +45,7 @@ export const RecipePageItem: FC<RecipePageItemProps> = ({ item }) => {
             } )}
           </ul>
         </div>
+        <p>{ item.difficulty}</p>
         <div className={classes.times}>
           <div className={classes.item}>
             <span>Servings</span>
@@ -58,7 +61,7 @@ export const RecipePageItem: FC<RecipePageItemProps> = ({ item }) => {
           </div>
           <div className={classes.item}>
             <span>Total Time</span>
-            <span>{ `${Number(item.prepTimeMinutes) + Number(item.cookTimeMinutes)} min` }</span>
+            <span>{ `${fullTime} min` }</span>
           </div>
         </div>
       </div>

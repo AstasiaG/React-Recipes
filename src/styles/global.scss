@@ -114,3 +114,13 @@ h2 {
   width: 100%;
   margin: 0 auto;
 }
+
+:global(.grid_container) {
+  display: grid;
+  grid-template-columns: 3.08fr 1fr;
+  gap: 2rem;
+  max-width: 125rem;
+  width: 100%;
+  margin: 0 auto;
+  
+}

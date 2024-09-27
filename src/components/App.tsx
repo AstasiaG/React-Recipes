@@ -10,6 +10,7 @@ import { SearchResult } from '@/pages/SearchResult';
 export const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([])
   const [query, setQuery] = useState<string>('');
+  const [filter, setFilter] = useState<string>('');
   const [isTag, setIsTag] = useState<boolean>(false)
   const [isSearch, setIsSearch] = useState<boolean>(false)
   const [isMeal, setIsMeal] = useState<boolean>(false)
@@ -26,7 +27,9 @@ export const App = () => {
         isSearch,
         setIsSearch,
         isMeal,
-        setIsMeal
+        setIsMeal,
+        filter,
+        setFilter
       }}
     >
       <BrowserRouter>

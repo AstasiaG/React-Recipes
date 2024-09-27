@@ -4,14 +4,16 @@ import { TagsCloud } from '@/components/TagsCloud/TagsCloud'
 import { SearchContext } from '@/context'
 import { useFetching } from '@/hooks/useFetch'
 import { useSearch } from '@/hooks/useSearch'
+import { IRecipe } from '@/types/types'
+import { totalTime } from '@/utils/TotalTime'
 import React, { FC, ReactNode, useContext, useEffect, useMemo, useState } from 'react'
 
 export const Main = () => {
   const [page, setPage] = useState<number>(1)
   const [limit, setLimit] = useState<number>(12)
   const [total, setTotal] = useState<number>(0)
-  const { isSearch, setRecipes, query} = useContext(SearchContext)
-  const url = useSearch(query, isSearch);
+  const { isSearch, setRecipes, query, setFilter, filter, recipes} = useContext(SearchContext)
+  const url = useSearch(query, filter, isSearch);
 
   const [fetchRecipes, error] = useFetching(async ({limit, page, url}) => {
     
@@ -20,17 +22,27 @@ export const Main = () => {
     setTotal(response.data.total)
     setRecipes(response.data.recipes)
   })
+  
 
   useEffect(() => {
     fetchRecipes({limit, page, url})
 
   }, [page, limit, url])
 
+
   return (
     <div className='container'>
-      <div style={{display: 'grid', gap: '2rem', gridTemplateColumns: '3.08fr 1fr'}}>
-        <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
-        <TagsCloud />
+      <div>
+        <span>Sort by:</span>
+        <ul>
+          <li onClick={() => setFilter('name')}>Name</li>
+          <li onClick={() => setFilter('rating')}>Rating</li>
+          <li onClick={() => setFilter('difficulty')}>Difficulty</li>
+        </ul>
+      </div>
+    <div className='grid_container'>
+      <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
+      <TagsCloud />
       </div>
     </div>
   )

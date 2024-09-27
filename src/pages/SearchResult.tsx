@@ -1,5 +1,6 @@
 import Service from '@/API/Service'
 import { RecipesList } from '@/components/RecipesList/RecipesList'
+import { TagsCloud } from '@/components/TagsCloud/TagsCloud'
 import { SearchContext } from '@/context'
 import { useFetching } from '@/hooks/useFetch'
 import { useSearch } from '@/hooks/useSearch'
@@ -9,8 +10,8 @@ export const SearchResult = () => {
   const [page, setPage] = useState<number>(1)
   const [limit, setLimit] = useState<number>(8)
   const [total, setTotal] = useState<number>(0)
-  const {isSearch, isTag, isMeal, setRecipes, query } = useContext(SearchContext)
-  const url = useSearch(query, isSearch, isMeal, isTag);
+  const {isSearch, isTag, isMeal, setRecipes, query, filter } = useContext(SearchContext)
+  const url = useSearch(query, filter, isSearch, isMeal, isTag);
 
   const [fetchRecipes, error] = useFetching(async ({limit, page, url}) => {
     
@@ -27,8 +28,11 @@ export const SearchResult = () => {
 
   return (
     <div className='container'>
-      <h2>{ query }</h2>
-      <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
+      <h2>{query}</h2>
+      <div className='grid_container'>
+        <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
+        <TagsCloud />
+      </div>
     </div>
   )
 }
