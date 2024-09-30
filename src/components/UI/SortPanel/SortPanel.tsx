@@ -3,14 +3,15 @@ import * as classes from './SortPanel.module.scss'
 
 interface SortPanelProps {
   setFilter: (val: string) => void
+  setLimit: (val: number) => void
 }
 
-export const SortPanel:FC<SortPanelProps> = ({ setFilter }) => {
+export const SortPanel:FC<SortPanelProps> = ({ setFilter,setLimit }) => {
   const [isActive, setIsActive] = useState<string>('')
-  console.log(isActive)
   
   return (
-    <div className={classes.panel}>
+    <div className={classes.wrapper}>
+      <div className={classes.panel}>
         <span>Sort by:</span>
         <ul>
         <li
@@ -45,5 +46,17 @@ export const SortPanel:FC<SortPanelProps> = ({ setFilter }) => {
         </li>
         </ul>
       </div>
+      <div className={classes.quantity}>
+        <span>Per page:</span>
+        <select
+          onChange={(event) => setLimit(Number(event.target.value))}
+        >
+          <option value={9}>9</option>
+          <option value={18}>18</option>
+          <option value={36}>36</option>
+          <option value={-1}>All</option>
+        </select>
+      </div>
+    </div>
   )
 }
