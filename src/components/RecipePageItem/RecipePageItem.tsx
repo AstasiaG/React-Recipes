@@ -20,6 +20,7 @@ export const RecipePageItem: FC<RecipePageItemProps> = ({ item }) => {
           <RecipeHeader recipe={item} classes={classes} />
 
           <div className={classes.ingredients}>
+            <p className={classes.difficulty}>Difficulty: <span>{ item.difficulty}</span></p>
             <h3 className={classes.title}>Ingredients</h3>
             <ul className={classes.list}>
               {item.ingredients.map((ingredient: string,id: number) => 
@@ -45,7 +46,6 @@ export const RecipePageItem: FC<RecipePageItemProps> = ({ item }) => {
             } )}
           </ul>
         </div>
-        <p>{ item.difficulty}</p>
         <div className={classes.times}>
           <div className={classes.item}>
             <span>Servings</span>
