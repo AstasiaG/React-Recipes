@@ -2,6 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import * as classes from './Navbar.module.scss'
 import { SearchContext } from '@/context'
+import { Input } from '../Input/Input'
 
 export const Navbar = () => {
   const { setQuery, setIsSearch} = useContext(SearchContext);
@@ -21,7 +22,7 @@ export const Navbar = () => {
       >
         All Recipes
       </NavLink>
-      <input
+      <Input
         type='text'
         placeholder='Find a recipe...'
         onChange={(e: ChangeEvent<HTMLInputElement>) => {

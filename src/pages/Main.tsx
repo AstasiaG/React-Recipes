@@ -33,7 +33,7 @@ export const Main = () => {
 
   return (
     <div className='container'>
-      <SortPanel setFilter={setFilter} setLimit={ setLimit } />
+      <SortPanel setFilter={setFilter} setLimit={setLimit} limit={ limit } />
       <div className='grid_container'>
         <RecipesList total={total} limit={limit} page={page} setPage={setPage} />
         <TagsCloud />

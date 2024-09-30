@@ -1,0 +1,13 @@
+@use '@/styles/global.scss';
+
+.input {
+  width: fit-content;
+  padding: 0.6rem 3.6rem;
+  border: 0.1rem solid global.$light-gray;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+
+  &::placeholder {
+    color: global.$dark-grey;
+  }
+}

@@ -1,12 +1,14 @@
 import React, { FC, MouseEvent, MouseEventHandler, useState } from 'react'
 import * as classes from './SortPanel.module.scss'
+import { Select } from '../Select/Select'
 
 interface SortPanelProps {
   setFilter: (val: string) => void
   setLimit: (val: number) => void
+  limit: number
 }
 
-export const SortPanel:FC<SortPanelProps> = ({ setFilter,setLimit }) => {
+export const SortPanel:FC<SortPanelProps> = ({ setFilter,setLimit, limit }) => {
   const [isActive, setIsActive] = useState<string>('')
   
   return (
@@ -39,8 +41,7 @@ export const SortPanel:FC<SortPanelProps> = ({ setFilter,setLimit }) => {
           {
             setFilter('difficulty')
             setIsActive('difficulty')
-          }
-          }
+          }}
         >
           Difficulty
         </li>
@@ -48,14 +49,18 @@ export const SortPanel:FC<SortPanelProps> = ({ setFilter,setLimit }) => {
       </div>
       <div className={classes.quantity}>
         <span>Per page:</span>
-        <select
-          onChange={(event) => setLimit(Number(event.target.value))}
+        <Select
+          value={limit}
+          onChange={(value: number) => setLimit(value)}
+          defaultValue=""
+          options={[
+            {value: 9, name: '9'},
+            {value: 18, name: '18'},
+            { value: 36, name: '36' },
+            {value: -1, name: 'All'},
+          ]}
         >
-          <option value={9}>9</option>
-          <option value={18}>18</option>
-          <option value={36}>36</option>
-          <option value={-1}>All</option>
-        </select>
+        </Select>
       </div>
     </div>
   )

@@ -23,13 +23,5 @@
 
     input {
       width: 72rem;
-      padding: 0.6rem 3.6rem;
-      border: 0.1rem solid global.$light-gray;
-      border-radius: 4rem;
-      font-size: 1.4rem;
-
-      &::placeholder {
-        color: global.$dark-grey;
-      }
     }
 }
